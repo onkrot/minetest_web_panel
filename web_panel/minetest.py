@@ -232,7 +232,7 @@ def start(server):
 	f.write(str(server.id))
 	f.write("\",\n\t[\"auth_key\"] = \"")
 	f.write(key)
-	f.write("\",\n\t[\"webpanel_host\"] = \"http://")
+	f.write("\",\n\t[\"webpanel_host\"] = \"")
 	f.write(app.config['ADDRESS'])
 	f.write(":")
 	f.write(str(app.config['PORT']))
@@ -240,6 +240,9 @@ def start(server):
 	f.write(str(app.config['HTTP_SYNC_INTERVAL']))
 	f.write(",\n\t[\"sync_timeout\"] = ")
 	f.write(str(app.config['HTTP_SYNC_TIMEOUT']))
+	f.write(",\n\t[\"sync_method\"] = \"")
+	f.write(str(app.config['CMD_DELIVERY_METHOD']))
+	f.write("\"")
 	f.write("\n}\n")
 	f.close()
 

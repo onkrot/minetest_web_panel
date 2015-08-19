@@ -44,7 +44,8 @@ local function process_frompanel(data)
 	end
 end
 
-local mech = dofile(minetest.get_modpath("mwcp") .. "/http.lua")
+local provider = dofile(minetest.get_modpath("mwcp") .. "/mech_provider.lua")
+local mech		 = nil
 local sync_interval = nil
 local function init()
 	-- Get startup data from webpanel
@@ -52,6 +53,7 @@ local function init()
 	local data = minetest.deserialize(f:read("*all"))
 	f:close()
 	sync_interval = data.sync_interval
+	mech = provider.get_provider(data.sync_method)
 	mech.init(process_frompanel, data)
 end
 init()
